@@ -45,12 +45,26 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecificationExpanderTests.cs" />
+    <Compile Include="TestObjects\TestPost.cs" />
+    <Compile Include="TestSpecifications\PostHasContent.cs" />
+    <Compile Include="TestSpecifications\PostHasATitle.cs" />
+    <Compile Include="SpecificationCompositionTests.cs" />
+    <Compile Include="VisitableQueryTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rh.Specifiable\Rh.Specifiable.csproj">
+      <Project>{A8DBF6AE-1BA3-43FA-B6FF-B3F87ABEE17C}</Project>
+      <Name>Rh.Specifiable</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
