@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Linq.Expressions;
 
-namespace Rh.Specifiable.Expression
+namespace Rh.Specifiable.Expressions
 {
     // Taken/modified from:
     // https://blogs.msdn.microsoft.com/meek/2008/12/07/invocationexpression-and-linq-to-entities/

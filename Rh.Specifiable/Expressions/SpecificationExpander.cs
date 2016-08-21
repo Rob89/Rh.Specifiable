@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Rh.Specifiable.Specifications;
 
-namespace Rh.Specifiable.Expression
+namespace Rh.Specifiable.Expressions
 {
     public class SpecificationExpander : ExpressionVisitor
     {

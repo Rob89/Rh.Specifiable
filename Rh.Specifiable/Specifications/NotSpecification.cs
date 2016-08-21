@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Rh.Specifiable.Expression;
+using Rh.Specifiable.Expressions;
 
 namespace Rh.Specifiable.Specifications
 {

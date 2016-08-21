@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using Rh.Specifiable.Expression;
+using Rh.Specifiable.Expressions;
 
 namespace Rh.Specifiable.Specifications
 {

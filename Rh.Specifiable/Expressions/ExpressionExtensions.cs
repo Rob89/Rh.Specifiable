@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Rh.Specifiable.Expression
+namespace Rh.Specifiable.Expressions
 {
     // This was inspired by:
     // https://blogs.msdn.microsoft.com/meek/2008/05/02/linq-to-entities-combining-predicates/

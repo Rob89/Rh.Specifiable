@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Rh.Specifiable.Expression;
+using Rh.Specifiable.Expressions;
 
 namespace Rh.Specifiable.Queryable
 {
