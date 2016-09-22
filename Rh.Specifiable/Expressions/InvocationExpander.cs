@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO.Ports;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Rh.Specifiable.Expressions
@@ -8,24 +9,24 @@ namespace Rh.Specifiable.Expressions
     public class InvocationExpander : ExpressionVisitor
     {
         private readonly ParameterExpression _parameter;
-        private readonly System.Linq.Expressions.Expression _expansion;
+        private readonly Expression _expansion;
         private readonly InvocationExpander _previous;
 
         public InvocationExpander() { }
 
-        private InvocationExpander(ParameterExpression parameter, System.Linq.Expressions.Expression expansion, InvocationExpander previous)
+        private InvocationExpander(ParameterExpression parameter, Expression expansion, InvocationExpander previous)
         {
             _parameter = parameter;
             _expansion = expansion;
             _previous = previous;
         }
 
-        public InvocationExpander Push(ParameterExpression parameter, System.Linq.Expressions.Expression expansion)
+        public InvocationExpander Push(ParameterExpression parameter, Expression expansion)
         {
             return new InvocationExpander(parameter, expansion, this);
         }
 
-        protected override System.Linq.Expressions.Expression VisitInvocation(InvocationExpression iv)
+        protected override Expression VisitInvocation(InvocationExpression iv)
         {
             if (iv.Expression.NodeType != ExpressionType.Lambda)
             {
@@ -35,11 +36,12 @@ namespace Rh.Specifiable.Expressions
             return lambda
                 .Parameters
                 .Select((x, i) => new { Parameter = x, Expansion = iv.Arguments[i] })
+                .Where(pair => pair.Parameter != pair.Expansion) // Ignore previoulsy expanded parameters
                 .Aggregate(this, (previous, pair) => previous.Push(pair.Parameter, pair.Expansion))
                 .Visit(lambda.Body);
         }
 
-        protected override System.Linq.Expressions.Expression VisitParameter(ParameterExpression p)
+        protected override Expression VisitParameter(ParameterExpression p)
         {
             var expander = this;
             while (null != expander)
